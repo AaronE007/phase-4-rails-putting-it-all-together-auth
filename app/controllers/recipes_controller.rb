@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    recipe = @current_user.recipes.create!(recipe_params)
+    recipe = Recipe.create!(recipe_params.merge(user_id: @current_user.id))
     render json: recipe, status: :created
   end
 
